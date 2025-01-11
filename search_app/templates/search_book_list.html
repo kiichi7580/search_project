@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>書籍一覧</title>
+  <!-- Bootstrap -->
+  <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">書籍一覧</h1>
+    <form method="get">
+
+      <!-- 検索キーワード入力 --> 
+      {{ form.as_p }}
+
+      <!-- カテゴリの選択 -->
+      <label for="category">カテゴリ:</label>
+        <select name="category">
+        <option value="placeholder">カテゴリーを選択</option>
+        <option value=1>IT・テクノロジー</option>
+        <option value=2>金融</option>
+        <option value=3>製造</option>
+        <option value=4>小売</option>
+        <option value=5>サービス</option>
+        <option value=6>医療</option>
+        <option value=7>建設</option>
+        <option value=8>エネルギー</option>
+        <option value=9>農業</option>
+        <option value=10>その他</option>
+      </select>
+
+      <!-- 並び替えの選択 -->
+      <label for="sort">並び替え:</label>
+      <select name="sort">
+        <option value="title">タイトル順</option>
+        <option value="publication_date">出版日順</option>
+      </select>
+      <button type="submit">検索</button>
+    </form>
+
+  <ul class="list-group mt-4">
+    {% for book in page_obj %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <h5>{{ book.title }}</h5>
+          <p>著者: {{ book.author }}</p>
+          <p>{{ book.isbn }}</p>
+        </div>
+        {% if book.cover_url %}
+          <div>
+            <img src="{{ book.cover_url }}" alt="{{ book.title }}" height="200">
+          </div>
+        {% else %}
+            <p>カバー画像はありません。</p>
+        {% endif %}
+        <div>
+          <a href="{% url 'book_detail' book.id %}" class="btn btn-primary me-2">詳細</a>
+          <a href="{% url 'book_update' book.id %}" class="btn btn-success me-2">編集</a>
+          <form action="{% url 'book_delete' book.id %}" method="POST" style="display:inline;" onsubmit="return confirm('本当に削除しますか？');">
+            {% csrf_token %}
+              <button type="submit" class="btn btn-danger">削除</button>
+          </form>
+        </div>
+      </li>
+    {% empty %}
+      li class="list-group-item">書籍がありません。</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="pagination d-flex justify-content-center">
+  <span class="step_links">
+    {% if page_obj.has_previous %}
+      <a href="?page=1">最初</a>
+      <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
+    {% endif %}
+    <span class="current">
+      ページ {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    </span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">次へ</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}">次へ</a>
+    {% endif %}
+  </span>
+</div>
+
+</div>
+  
+<!-- Bootstrap JS --> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> 
+</body>
+</html>
