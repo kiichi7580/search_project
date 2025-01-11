@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>書籍の詳細</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="/static/styles.css"> 
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="card-title"> {{ book.title }}</h2>
+            {% if book.cover_url %}
+            <div>
+              <img src="{{ book.cover_url }}" alt="{{ book.title }}" height="200">
+            </div>
+            {% else %}
+              <p>カバー画像はありません。</p>
+            {% endif %}
+            <p class="card-text">著者: {{ book.author }}</p>
+            <p class="card-text">出版社: {{ book.publisher }}</p>
+            <p class="card-text">出版日: {{ book.publication_date }}</p>
+            <p class="card-text">{{ book.description }}</p>
+            <p class="card-text">{{ book.isbn }}</p>
+          </div>
+
+            <div class="d-flex justify-content-center mt-4">
+              <a href="{% url 'search_book_list' %}" class="btn btn-secondary">書籍一覧に戻る</a>
+              <a href="{% url 'book_update' book.pk %}" class="btn btn-success">編集</a>
+              <form action="{% url 'book_delete' book.pk %}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">削除</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> 
+</body>
+</html>

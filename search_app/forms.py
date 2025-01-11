@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product
+from .models import Book
 
 class SearchForm(forms.Form):
   query = forms.CharField(
@@ -10,7 +10,7 @@ class SearchForm(forms.Form):
   )
 
 
-class ProductForm(forms.ModelForm):
+class BookForm(forms.ModelForm):
   class Meta:
-    model = Product
-    fields = ['name', 'description', 'price', 'category'] 
+    model = Book
+    fields = ['title', 'author', 'publisher', 'publication_date', 'description', 'category', 'isbn'] 
