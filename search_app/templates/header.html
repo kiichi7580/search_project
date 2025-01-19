@@ -1,0 +1,19 @@
+<header>
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      {% load static %}
+      <a class="navbar-brand" href="/"><img src="{% static 'images/app_logo.png' %}" alt="アプリのロゴ画像" width="100" height="100" class="app-icon"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
+          <li class="nav-item"><a class="nav-link" href="/book/new">書籍登録</a></li>
+          <li class="nav-item"><a class="nav-link" href="#signup">新規登録</a></li>
+          <li class="nav-item"><a class="nav-link" href="#signin">ログイン</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
