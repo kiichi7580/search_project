@@ -1,0 +1,28 @@
+<form method="get">
+  <!-- 検索キーワード入力 --> 
+  {{ form.as_p }}
+
+  <!-- カテゴリの選択 -->
+  <label for="category">カテゴリ:</label>
+  <select name="category">
+    <option value="placeholder">カテゴリーを選択</option>
+    <option value="1">IT・テクノロジー</option>
+    <option value="2">金融</option>
+    <option value="3">製造</option>
+    <option value="4">小売</option>
+    <option value="5">サービス</option>
+    <option value="6">医療</option>
+    <option value="7">建設</option>
+    <option value="8">エネルギー</option>
+    <option value="9">農業</option>
+    <option value="10">その他</option>
+  </select>
+
+  <!-- 並び替えの選択 -->
+  <label for="sort">並び替え:</label>
+  <select name="sort">
+    <option value="title">タイトル順</option>
+    <option value="publication_date">出版日順</option>
+  </select>
+  <button type="submit" class="btn btn-primary mt-3">検索</button>
+</form>
