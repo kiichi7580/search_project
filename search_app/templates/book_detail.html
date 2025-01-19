@@ -1,49 +1,40 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>書籍の詳細</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> 
-  <link rel="stylesheet" href="/static/styles.css"> 
-</head>
-<body>
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
+{% extends 'base.html' %}
 
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h2 class="card-title"> {{ book.title }}</h2>
-            {% if book.cover_url %}
-            <div>
-              <img src="{{ book.cover_url }}" alt="{{ book.title }}" height="200">
-            </div>
-            {% else %}
-              <p>カバー画像はありません。</p>
-            {% endif %}
-            <p class="card-text">著者: {{ book.author }}</p>
-            <p class="card-text">出版社: {{ book.publisher }}</p>
-            <p class="card-text">出版日: {{ book.publication_date }}</p>
-            <p class="card-text">{{ book.description }}</p>
-            <p class="card-text">{{ book.isbn }}</p>
-          </div>
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="detail-card p-4 shadow-sm rounded">
+        <h1 class="detail-title text-center mb-4">{{ book.title }}</h1>
+        {% if book.cover_url %}
+        <div class="text-center mb-4">
+          <img src="{{ book.cover_url }}" alt="{{ book.title }}" class="img-fluid rounded shadow-sm" style="max-height: 300px;">
+        </div>
+        {% else %}
+        <div class="text-center mb-4">
+          <p class="text-muted">カバー画像はありません。</p>
+        </div>
+        {% endif %}
 
-            <div class="d-flex justify-content-center mt-4">
-              <a href="{% url 'search_book_list' %}" class="btn btn-secondary">書籍一覧に戻る</a>
-              <a href="{% url 'book_update' book.pk %}" class="btn btn-success">編集</a>
-              <form action="{% url 'book_delete' book.pk %}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">削除</button>
-              </form>
-            </div>
-          </div>
+        <div class="detail-info">
+          <p><strong>著者:</strong> {{ book.author }}</p>
+          <p><strong>出版社:</strong> {{ book.publisher }}</p>
+          <p><strong>出版日:</strong> {{ book.publication_date }}</p>
+          <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+          <p><strong>説明:</strong></p>
+          <p>{{ book.description }}</p>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mt-4 gap-3">
+          <a href="{% url 'search_book_list' %}" class="btn btn-outline-primary px-4">書籍一覧に戻る</a>
+          <a href="{% url 'book_update' book.pk %}" class="btn btn-outline-success px-4">編集</a>
+          <form id="deleteForm" action="{% url 'book_delete' book.pk %}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger px-4">削除</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> 
-</body>
-</html>
+</div>
+{% endblock %}
