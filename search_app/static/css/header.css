@@ -29,10 +29,9 @@ header {
   margin-left: 16px;
 }
 
-/* hover時のスタイルを追加 */
 .navbar .navbar-nav li a:hover {
-  font-size: 18px; /* 少し大きくする */
-  color: #ffcc00; /* オプション: 色を変える場合 */
+  font-size: 18px;
+  color: #ffcc00;
   transition: font-size 0.2s ease-out, color 0.2s ease-out;
 }
 
