@@ -1,5 +1,7 @@
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import Book
+from django.core.exceptions import ValidationError
+from .models import Book, CustomUser
 
 class SearchForm(forms.Form):
   query = forms.CharField(
@@ -32,9 +34,22 @@ class BookForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'custom-select'}),
             'isbn': forms.TextInput(attrs={'placeholder': '13桁のISBNコードを入力'})
         }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        isbn = cleaned_data.get("isbn")
 
-    def clean_isbn(self):
-        isbn = self.cleaned_data.get('isbn')
-        if len(isbn) != 13:
-            raise forms.ValidationError('ISBNは13桁である必要があります。')
-        return isbn
+        if isbn:
+            if len(isbn) != 13:
+                raise ValidationError("ISBNは13桁である必要があります。")
+
+
+class SignUpForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = (
+            "username",
+            "email",
+            "password1",
+            "password2",
+        )

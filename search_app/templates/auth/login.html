@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login Page</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/auth.css' %}"> 
+    </head>
+    <body>
+        <div class="glass-container glass-container-login">
+            <div class="login-box">
+                <h2>Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <table>
+                        <tr>
+                            <th>
+                                <label for="id_username">名前</label>
+                            </th>
+                            <td>{{ form.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="id_password">パスワード</label>
+                            </th>
+                            <td>{{ form.password }}</td>
+                        </tr>
+                    </table>
+                    <!-- <div class="options">
+                        <input type="checkbox" id="remember" name="remember" checked>
+                        <label for="remember">ログイン情報を保持</label>
+                        <a href="#">パスワードを変更</a>
+                    </div> -->
+                    <button type="submit">ログイン</button>
+                    <p>アカウントを作成しますか？ <a href="/auth/signup" id="signup">新規登録</a></p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

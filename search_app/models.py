@@ -1,5 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 from .utils import get_cover_image_url
+
+class CustomUser(AbstractUser):
+  email = models.EmailField('メールアドレス', unique=True)
+
 
 class Category(models.Model):
   name = models.CharField(max_length=255, unique=True)
@@ -25,6 +30,7 @@ class Book(models.Model):
   description = models.TextField()
   category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
   isbn = models.CharField(unique=True, default='')
+  user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
 
 
   def __str__(self):

@@ -114,6 +114,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = "/auth/login/"
+LOGIN_REDIRECT_URL = "/book/"
+LOGOUT_REDIRECT_URL = "/auth/login/"
+
+AUTH_USER_MODEL = 'search_app.CustomUser'
+
+# 暗号化されたhttpsを使うようにする
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

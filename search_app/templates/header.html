@@ -8,10 +8,10 @@
       </button>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
-          <li class="nav-item"><a class="nav-link" href="/book/new">書籍登録</a></li>
-          <li class="nav-item"><a class="nav-link" href="#signup">新規登録</a></li>
-          <li class="nav-item"><a class="nav-link" href="#signin">ログイン</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'search_app:search_book_list' %}">ホーム</a></li>
+          <li class="nav-item"><a class="nav-link" href="/book/new/">書籍登録</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'search_app:signup' %}">新規登録</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="{% url 'search_app:logout' %}">ログアウト</a></li> -->
         </ul>
       </div>
     </div>
