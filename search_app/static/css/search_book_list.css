@@ -69,3 +69,6 @@ img {
   background-color: #003366;
   color: #ffffff;
 }
+.logout-button {
+  padding: 20px;
+}
