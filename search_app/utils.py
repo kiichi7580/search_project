@@ -9,18 +9,10 @@ def get_cover_image_url(isbn):
       data = response.json()
       print(f"data: {data}")
 
-      if "item" in data:
-        for item in data["items"]:
-          volume_info = item.get("volumeInfo", {})
-          identifiers = volume_info.get("industryIdentifiers", [])
-          isbn_found = any(id["identifier"] == isbn for id in identifiers)
+      thumbnail_url = data.get("items", [{}])[0].get("volumeInfo", {}).get("imageLinks", {}).get("thumbnail", "No image available")
 
-          if isbn_found:
-            title = volume_info.get("title", "No Title")
-            authors = volume_info.get("authors",  [])
-            print(f"Title: {title}, Authors: {authors}")
-
-            image_links = volume_info.get("imageLinks", {})
-            return image_links.get("thumbnail", None)
-    
-    return None
+      print(thumbnail_url)
+      if thumbnail_url:
+          return thumbnail_url
+      else:
+          return None
