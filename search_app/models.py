@@ -29,7 +29,7 @@ class Book(models.Model):
   publication_date = models.DateField()
   description = models.TextField()
   category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
-  isbn = models.CharField(unique=True, default='')
+  isbn = models.CharField(max_length=13, unique=True)
   user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
 
 
