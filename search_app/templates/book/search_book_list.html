@@ -1,43 +1,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container mt-5">
-    
-    <p>こんにちは！{{ user.email }}さん</p>
 
-    {% include 'book/search_area.html' %}
+  <!-- コンテンツ -->
+  <div class="container mt-5 wrapper">
 
-    <ul class="list-group mt-4">
+    <main class="grid">
+      {% include 'book/user_info.html' %}
+
+      {% include 'book/search_area.html' %}
+
       {% for book in page_obj %}
-        <li class="list-group-item">
-          <div>
-            <h5>{{ book.title }}</h5>
-            <p>著者: {{ book.author }}</p>
-            <p>{{ book.isbn }}</p>
-          </div>
+        <div class="item item-container mt-4">
+            <h5 class="book-title">{{ book.title }}</h5>
+            <div class="d-flex justify-content-around align-items-center my-4">
+              <p class="book-author">著者: {{ book.author }}</p>
+              <!-- カテゴリータグ -->
+              {% if book.category_id == 1 %}
+                <a class="book-category-tag" href="#">IT・テクノロジー</a>
+              {% elif book.category_id == 2 %}
+                <a class="book-category-tag" href="#">金融</a>
+              {% elif book.category_id == 3 %}
+                <a class="book-category-tag" href="#">製造</a>
+              {% elif book.category_id == 4 %}
+                <a class="book-category-tag" href="#">小売</a>
+              {% elif book.category_id == 5 %}
+                <a class="book-category-tag" href="#">サービス</a>
+              {% elif book.category_id == 6 %}
+                <a class="book-category-tag" href="#">医療</a>
+              {% elif book.category_id == 7 %}
+                <a class="book-category-tag" href="#">建設</a>
+              {% elif book.category_id == 8 %}
+                <a class="book-category-tag" href="#">エネルギー</a>
+              {% elif book.category_id == 9 %}
+                <a class="book-category-tag" href="#">農業</a>
+              {% elif book.category_id == 10 %}
+                <a class="book-category-tag" href="#">その他</a>
+              {% else %}
+                <p>カテゴリーなし</p>
+              {% endif %}
+            </div>
+
+          <!-- 書籍の表紙カバー画像 -->
           {% if book.cover_url %}
             <div>
-              <img src="{{ book.cover_url }}" alt="{{ book.title }}" height="150">
+              <img src="{{ book.cover_url }}" alt="{{ book.title }}">
             </div>
           {% else %}
               <p>カバー画像はありません。</p>
           {% endif %}
-          <div class="d-flex justify-content-center align-items-center mt-4 gap-2">
-            <a href="{% url 'search_app:book_detail' book.id %}" class="btn btn-outline-primary me-2">詳細</a>
-            <a href="{% url 'search_app:book_update' book.id %}" class="btn btn-outline-success me-2">編集</a>
-            <form id="deleteForm" action="{% url 'search_app:book_delete' book.id %}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-outline-danger me-2">削除</button>
-            </form>
+          
+          <!-- 書籍詳細ボタン -->
+          <div>
+            <a href="{% url 'search_app:book_detail' book.id %}" class="btn btn-outline-primary me-2 mt-4">詳細</a>
           </div>
-        </li>
+        </div>
       {% empty %}
         <li class="list-group-item">書籍がありません。</li>
       {% endfor %}
-    </ul>
+    </main>
   </div>
 
-  <div class="pagination d-flex justify-content-center">
+  <!-- ページネーション -->
+  <div class="pagination pagination-container d-flex justify-content-center">
     <span class="step_links">
       {% if page_obj.has_previous %}
         <a href="?page=1">最初</a>
@@ -51,11 +76,5 @@
         <a href="?page={{ page_obj.paginator.num_pages }}">最後</a>
       {% endif %}
     </span>
-  </div>
-  <div>
-    <form method="post" action="{% url 'search_app:logout' %}">
-      {% csrf_token %}
-      <button type="submit" class="logout-button">ログアウト</button>
-    </form>
   </div>
 {% endblock %}
