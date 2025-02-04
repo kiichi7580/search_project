@@ -1,0 +1,385 @@
+@charset "UTF-8";
+
+
+/* テーマカラー 
+
+Base Color: #dddddd
+Base(dark) Color: #28373c
+Main Color: #005070
+Accent Color: #e5cf6e
+
+*/
+
+
+
+/* 共通スタイル 
+
+-------------------- */
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #dddddd;
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.base-form, .form-container, .item-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+
+input, select, textarea, button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.input-item {
+  display: inline-block;
+  margin-bottom: 1.6rem;
+}
+
+/* ボタン共通スタイル */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+}
+.btn-secondary:hover {
+  background-color: #5a6268;
+  transform: scale(1.05);
+}
+
+/* ヘッダー 
+
+-------------------- */
+header {
+  height: 90px;
+  line-height: 100%;
+  background-color: #005070;
+  position: relative;
+}
+
+.navbar {
+  margin-bottom: 0;
+  transition: all 0.2s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.navbar-brand, .navbar-nav > li > a {
+  color: #fff;
+  text-transform: uppercase;
+  transition: color 0.2s ease-out;
+  margin-right: 20px;
+}
+
+.navbar-nav > li > a:hover {
+  font-size: 18px;
+  color: #e5cf6e;
+}
+
+.app-icon img {
+  height: 70px;
+  width: 70px;
+}
+
+
+/* コンテンツ
+
+--------------------- */
+
+/* 書籍ページ  */
+.wrapper {
+  max-width: 1120px;
+  margin: auto;
+  padding: 0 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+}
+
+.item img {
+  aspect-ratio: 1/1.414;
+  object-fit: cover;
+}
+
+.item p {
+  font-size: .875rem;
+}
+
+.f-container {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.detail-card {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+}
+
+.detail-title {
+  font-size: 2rem;
+  color: #333;
+}
+
+.detail-info p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.detail-info strong {
+  color: #000;
+}
+
+.book-title {
+  border-bottom: 2px dotted #6c757d;
+  padding-bottom: .775rem;
+}
+
+.book-author {
+  margin-bottom: 0;
+}
+
+.book-category-tag {
+  display: inline-block;
+  color: #28373c;
+  background-color: #e5cf6e;
+  border-radius: 8px;
+  font-size: .875rem;
+  padding: .5rem .8rem;
+}
+
+/* ユーザー情報 */
+.item-user-info {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.user-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  margin-right: 15px;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.books-read {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0 0;
+}
+
+.books-read span {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.profile-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: white;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.profile-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 検索エリア */
+.item-search-area {
+  grid-column: 2/4;
+  grid-row: 1/2;
+  text-align: start;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 16px;
+}
+
+.search-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  color: white;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-btn:hover {
+  background: #0056b3;
+}
+
+/* ページネーション */
+.pagination-container {
+  margin-top: 3rem;
+}
+
+/* ボタンのバリエーション */
+.btn-outline-primary, .btn-outline-success, .btn-outline-danger {
+  border-radius: 30px;
+  font-size: 1rem;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+
+/* フッター
+
+-------------------- */
+.copyright {
+  background-color: #28373c;
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 6rem;
+  color: #fff;
+}
+
+/* レスポンシブ対応
+
+-------------------- */
+@media (max-width: 576px) {
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn {
+    width: 100%;
+  }
+}
+
+/* @media (min-width: 768px) {
+  .navbar {
+    height: 120px;
+  }
+
+  .navbar-nav > li > a {
+    padding: 15px 20px;
+    margin: 0;
+    text-align: center;
+    line-height: normal;
+  }
+
+  .navbar-brand {
+    padding: 0;
+    height: 120px;
+    line-height: 120px;
+  }
+
+  .navbar-scroll {
+    height: 70px;
+  }
+
+  .navbar-scroll .navbar-brand {
+    height: 70px;
+    line-height: 70px;
+  }
+
+  .navbar-scroll .navbar-nav>li>a {
+    opacity: 1;
+    padding: 0;
+    margin-top: 0;
+  }
+} */
