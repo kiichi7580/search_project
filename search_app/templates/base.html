@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <title>書籍検索アプリ</title>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>書籍一覧</title>
+    <title>BizReads - {{ title }}</title>
+    <meta name="description" content="ビジネス書検索サービス">
+
+    <!-- ファビコン -->
+    <link rel="icon" type="image/png" href="../static/images/app_logo.png">
+
+    <!-- リセットCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.com">
+
+    <!-- bootstrap -->
     <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- オリジナルCSS -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/search_book_list.css' %}"> 
-    <link rel="stylesheet" href="{% static 'css/book_detail.css' %}">
-    <link rel="stylesheet" href="{% static 'css/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/book_form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
 </head>
 <body>
+  <!-- ヘッダー -->
   {% include 'header.html' %}
 
+  <!-- コンテンツ -->
   {% block content %}
   {% endblock %}
 
-  <!-- Bootstrap JS  -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- フッター -->
+  {% include 'footer.html' %}
+
   {% load static %}
   <script src="{% static 'js/header.js' %}"></script>
 </body>
