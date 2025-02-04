@@ -28,7 +28,7 @@
         <div class="d-flex justify-content-center align-items-center mt-4 gap-3">
           <a href="{% url 'search_app:search_book_list' %}" class="btn btn-outline-primary px-4">書籍一覧に戻る</a>
           <a href="{% url 'search_app:book_update' book.pk %}" class="btn btn-outline-success px-4">編集</a>
-          <form id="deleteForm" action="{% url 'search_app:book_delete' book.pk %}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+          <form action="{% url 'search_app:book_delete' book.pk %}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
             {% csrf_token %}
             <button type="submit" class="btn btn-outline-danger px-4">削除</button>
           </form>
