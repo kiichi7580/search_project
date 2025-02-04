@@ -48,13 +48,21 @@ def book_create(request):
       return render(request, 'book/book_form.html', {'form': form})
   else:
       form = BookForm()
-      return render(request, 'book/book_form.html', {'form': form})
+      context = {
+        'form': form,
+        'title': '書籍登録'
+      }
+      return render(request, 'book/book_form.html', context)
 
 
 @login_required
 def book_detail(request, pk):
   book = get_object_or_404(Book, pk=pk)
-  return render(request, 'book/book_detail.html', {'book': book})
+  context = {
+        'book': book,
+        'title': f'「{book.title}」の詳細'
+    }
+  return render(request, 'book/book_detail.html', context)
 
 
 @login_required
@@ -67,10 +75,14 @@ def book_update(request, pk):
       return redirect('search_app:book_detail', pk=book.pk)
     else:
       return render(request, 'book/book_form.html', {'form': form, 'book': book})
-
   else:
       form = BookForm(instance=book)
-      return render(request, 'book/book_form.html', {'form': form, 'book': book})
+      context = {
+        'form': form,
+        'book': book,
+        'title': '書籍編集'
+      }
+      return render(request, 'book/book_form.html', context)
 
 
 @login_required
@@ -118,9 +130,34 @@ def search_book_list_view(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+    book_len = len(results)
+
     context = {
         'form': form,
-        'page_obj': page_obj
+        'page_obj': page_obj,
+        'title': 'ホーム',
+        'book_len': book_len,
     }
 
     return render(request, 'book/search_book_list.html', context)
+
+
+@login_required
+def profile_update(request, pk):
+  customUser = get_object_or_404(CustomUser, pk=pk)
+  if request.method == 'POST':
+    form = SignUpForm(request.POST, instance=customUser)
+    if form.is_valid():
+      form.save()
+      return redirect('search_app:search_book_list', pk=customUser.pk)
+    else:
+      return render(request, 'profile/edit_profile.html', {'form': form, 'customUser': customUser})
+  else:
+      form = SignUpForm(instance=customUser)
+      context = {
+        'form': form,
+        'customUser': customUser,
+        'title': 'プロフィール編集'
+      }
+      print(context)
+      return render(request, 'profile/edit_profile.html', context)
