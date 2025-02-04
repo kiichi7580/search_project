@@ -2,7 +2,10 @@
   <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       {% load static %}
-      <a class="navbar-brand" href="/"><img src="{% static 'images/app_logo.png' %}" alt="アプリのロゴ画像" width="100" height="100" class="app-icon"></a>
+      
+      <div class="app-icon">
+        <a class="navbar-brand" href="/book"><img src="{% static 'images/app_logo.png' %}" alt="アプリのロゴ画像"></a>
+      </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,8 +13,13 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="{% url 'search_app:search_book_list' %}">ホーム</a></li>
           <li class="nav-item"><a class="nav-link" href="/book/new/">書籍登録</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'search_app:signup' %}">新規登録</a></li>
-          <!-- <li class="nav-item"><a class="nav-link" href="{% url 'search_app:logout' %}">ログアウト</a></li> -->
+          <li class="nav-item"><a class="nav-link" href="mailto:kiichi20040521@gmail.com">お問い合わせ</a></li>
+          <div>
+            <form method="post" action="{% url 'search_app:logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="logout-button">ログアウト</button>
+            </form>
+          </div>
         </ul>
       </div>
     </div>
