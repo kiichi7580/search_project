@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login Page</title>
+        <title>BizReads - ログイン</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/auth.css' %}"> 
     </head>
@@ -11,9 +11,10 @@
         <div class="glass-container glass-container-login">
             <div class="login-box">
                 <h2>Login</h2>
-                <form method="post">
+                <form class="base-form" method="post">
                     {% csrf_token %}
-                    {% if form.errors %}
+                    <div>
+                        {% if form.errors %}
                         <div class="alert alert-danger">
                             <ul>
                                 {% for field in form %}
@@ -27,20 +28,9 @@
                             </ul>
                         </div>
                     {% endif %}
-                    <table>
-                        <tr>
-                            <th>
-                                <label for="id_username">名前</label>
-                            </th>
-                            <td>{{ form.username }}</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="id_password">パスワード</label>
-                            </th>
-                            <td>{{ form.password }}</td>
-                        </tr>
-                    </table>
+                    </div>
+                    <input type="text" id="username" name="username" required placeholder="名前">
+                    <input type="password" id="password" name="password" required placeholder="パスワード">
                     <!-- <div class="options">
                         <input type="checkbox" id="remember" name="remember" checked>
                         <label for="remember">ログイン情報を保持</label>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Signup Page</title>
+        <title>BizReads - 新規登録</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/auth.css' %}"> 
     </head>
@@ -11,48 +11,28 @@
         <div class="glass-container glass-container-signup">
             <div class="login-box">
                 <h2>Signup</h2>
-                <form method="post">
+                <form class="base-form" method="post">
                     {% csrf_token %}
-                    {% if form.errors %}
-                    <div class="alert alert-danger">
-                        <ul>
-                            {% for field in form %}
-                                {% for error in field.errors %}
-                                    <li>{{ error }}</li>
-                                {% endfor %}
-                            {% endfor %}
-                            {% for error in form.non_field_errors %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
+                    <div>
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% for error in form.non_field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
-                    <table>
-                        <tr>
-                            <th>
-                                <label for="{{ form.username.id_for_label }}">名前</label>
-                            </th>
-                            <td>{{ form.username }}</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="{{ form.email.id_for_label }}">メールアドレス</label>
-                            </th>
-                            <td>{{ form.email }}</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="{{ form.password1.id_for_label }}">パスワード</label>
-                            </th>
-                            <td>{{ form.password1 }}</td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="{{ form.password2.id_for_label }}">パスワード<br>（確認用）</label>
-                            </th>
-                            <td>{{ form.password2 }}</td>
-                        </tr>
-                    </table>
+                    <input type="text" id="username" name="username" required placeholder="名前">
+                    <input type="email" id="email" name="email" required placeholder="メールアドレス">
+                    <input type="password" id="password1" name="password1" required placeholder="パスワード">
+                    <input type="password" id="password2" name="password2" required placeholder="パスワード(確認用)">
                     <!-- <div class="options">
                         <input type="checkbox" id="remember" name="remember" checked>
                         <label for="remember">ログイン情報を保持</label>
