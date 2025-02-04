@@ -21,4 +21,5 @@ urlpatterns = [
     path('book/<int:pk>/', views.book_detail, name='book_detail'), 
     path('book/<int:pk>/edit/', views.book_update, name='book_update'), 
     path('book/<int:pk>/delete', views.book_delete, name='book_delete'), 
+    path('profile/<int:pk>/edit', views.profile_update, name='profile_update'), 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
