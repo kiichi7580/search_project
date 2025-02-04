@@ -1,3 +1,14 @@
+@charset "UTF-8";
+
+/* テーマカラー 
+
+Base Color: #f7f7f7
+Base(dark) Color: #28373c
+Main Color: #005070
+Accent Color: #e5cf6e
+
+*/
+
 body {
   margin: 0;
   display: flex;
@@ -13,7 +24,7 @@ body {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  border: 1px solid #003366;
+  border: 1px solid #005070;
 }
 .glass-container-signup{
   width: 300px;
@@ -39,7 +50,7 @@ body {
   text-align: center;
 }
 h2{
-  color: #003366;
+  color: #005070;
   margin-top: 30px;
   margin-bottom: -20px;
 }
@@ -54,12 +65,12 @@ input{
   border: none;
   border-radius: 10px;
   background: transparent;
-  border: 1px solid #003366;
-  color: #003366;
+  border: 1px solid #005070;
+  color: #005070;
   font-size: 13px;
 }
 input::placeholder{
-  color: #003366;
+  color: #005070;
 }
 input:focus{
   outline: none;
@@ -69,7 +80,7 @@ input:focus{
   align-items: center;
   margin-top: 15px;
   font-size: 12px;
-  color: #003366;
+  color: #005070
 }
 .options input{
   margin-right: 5px;
@@ -77,11 +88,11 @@ input:focus{
 }
 .options a{
   text-decoration: none;
-  color: #003366;
+  color: #005070;
   margin-left: auto;
 }
 button{
-  background: #003366;
+  background: #005070;
   color: #fff;
   padding: 10px;
   border: none;
@@ -91,11 +102,11 @@ button{
 }
 button:hover{
   background: transparent;
-  color: #003366;
-  outline: 1px solid #003366;
+  color: #005070;
+  outline: 1px solid #005070;
 }
 p{
   font-size: 12px;
-  color: #003366;
+  color: #005070;
   margin-top: 15px;
 }
