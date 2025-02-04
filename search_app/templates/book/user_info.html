@@ -1,0 +1,15 @@
+<div class="item-user-info item-container">
+    <!-- ユーザーアイコン -->
+    <div class="my-4">
+      <img src="../../static/images/user_default_icon.png" alt="ユーザーアイコン画像" class="user-icon">
+    </div>
+
+    <!-- ユーザー情報 -->
+    <div class="user-info mb-4">
+        <h2 class="username mb-2">{{ user.email }}</h2>
+        <p class="books-read mb-2">読んだ書籍の合計: <span>{{ book_len }}</span> 冊</p>
+    </div>
+
+    <!-- プロフィールボタン -->
+    <a href="/profile/{{ user.id }}/edit" class="profile-btn">プロフィールを編集</a>
+</div>
