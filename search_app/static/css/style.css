@@ -206,6 +206,13 @@ header {
   padding: .5rem .8rem;
 }
 
+.book-no-image {
+  width: 128px;
+  height: 187px;
+  background-color: #28373c;
+  color: #dddddd;
+}
+
 /* ユーザー情報 */
 .item-user-info {
   grid-column: 1/2;

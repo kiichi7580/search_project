@@ -47,7 +47,9 @@
               <img src="{{ book.cover_url }}" alt="{{ book.title }}">
             </div>
           {% else %}
-              <p>カバー画像はありません。</p>
+              <div class="book-no-image">
+                <p>カバー画像はありません。</p>
+              </div>
           {% endif %}
           
           <!-- 書籍詳細ボタン -->
